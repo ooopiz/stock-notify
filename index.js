@@ -1,4 +1,4 @@
-import { apiCall } from "./lib/common.js";
+import { apiCall, sendNotify } from "./lib/common.js";
 
 const main = async () => {
   if (!process.env.STOCKS_NOTIFY) {
@@ -11,12 +11,7 @@ const main = async () => {
 
   const noticeList = stocks.map((stock) => {
     const {
-      Code,
-      Name,
-      NumberOfAnnouncement,
-      ReasonsOfDisposition,
-      DispositionPeriod,DispositionMeasures,
-      Detail,
+      Code, Name, NumberOfAnnouncement, ReasonsOfDisposition, DispositionPeriod,DispositionMeasures, Detail,
       ...others
     } = stock
   
@@ -28,16 +23,7 @@ const main = async () => {
   const noticeMessage = `${title} ${d.toLocaleString()}\n${noticeList.join("\n")}`;
   //console.log(noticeMessage)
 
-  const options = {
-    method: 'POST',
-    headers: { Authorization: `Bearer ${process.env.STOCKS_NOTIFY}` },
-    form: {
-       message: noticeMessage,
-       //notificationDisabled: true
-    }
-  }
-  const sender = await apiCall('https://notify-api.line.me/api/notify', options);
-  //console.log(sender)
+  await sendNotify(noticeMessage);
 }
 
 main();
