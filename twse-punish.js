@@ -12,7 +12,7 @@ const main = async () => {
     return `${Name}, ${NumberOfAnnouncement}, ${DispositionPeriod}, ${ReasonsOfDisposition}, ${DispositionMeasures}`
   })
 
-  const title='上市-處置';
+  const title='集中市場公布處置股票';
   const d = new Date();
   const noticeMessage = `${title} ${d.toLocaleString()}\n${noticeList.join("\n")}`;
   //console.log(noticeMessage)
