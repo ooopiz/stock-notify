@@ -1,12 +1,6 @@
 import { apiCall, sendNotify } from "./lib/common.js";
 
 const main = async () => {
-  if (!process.env.STOCKS_NOTIFY) {
-    console.error('ENV not found: STOCKS_NOTIFY');
-    process.exit(1);
-  }
-
-
   const stocks = await apiCall('https://openapi.twse.com.tw/v1/announcement/punish');
 
   const noticeList = stocks.map((stock) => {
