@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 import { apiCall, sendNotify } from "./lib/common.js";
 
 const main = async () => {
